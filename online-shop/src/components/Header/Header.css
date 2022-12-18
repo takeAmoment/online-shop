@@ -1,0 +1,55 @@
+.header{
+    min-height: 5rem;
+    padding: 1rem 2rem;
+    background-color: rgba(34, 139, 34, 0.705);
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header__logo{
+    border-bottom: 3px solid rgb(106, 55, 106);
+    border-radius: 50%;
+    padding: 0.5rem 1rem;
+    font-style: italic;
+    font-weight: 300;
+}
+.menu__list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.link {
+    color: black;
+    font-size: 2.4rem;
+}
+.link:hover{
+    opacity: 0.6;
+    border-bottom: 1px solid green;
+    transition: all 0.3s ease;
+}
+.link.active{
+    color: white;
+}
+.cart {
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+    background-image: url(../../assets/cart.svg);
+    background-position: 0 0;
+    background-size: contain;
+    cursor: pointer;
+}
+.cart__amount{
+    display: block;
+    position: absolute;
+    top: -2px;
+    left: -5px;
+    width: 1.8rem;
+    height: 1.8rem;
+    text-align: center;
+    font-size: 1.4rem;
+    background-color: #fff;
+    border-radius: 50%;
+}

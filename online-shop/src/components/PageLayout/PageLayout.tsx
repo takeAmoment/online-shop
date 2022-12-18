@@ -1,15 +1,11 @@
+import Header from "components/Header/Header";
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 const PageLayout = () => {
   return (
-    <div>
-      <header>
-        <nav>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/about">About</NavLink>
-        </nav>
-      </header>
+    <div className="wrapper">
+      <Header />
       <Outlet />
       <footer>footer</footer>
     </div>
