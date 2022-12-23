@@ -1,7 +1,7 @@
 import PageLayout from "components/PageLayout/PageLayout";
 import AboutPage from "pages/AboutPage/AboutPage";
 import ErrorPage from "pages/ErrorPage/ErrorPage";
-import LoginPage from "pages/LoginPage/LoginPage";
+import LoginPage from "pages/AddUserPage/AddUserPage";
 import MainPage from "pages/MainPage/MainPage";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
