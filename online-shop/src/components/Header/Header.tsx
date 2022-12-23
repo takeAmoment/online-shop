@@ -1,8 +1,10 @@
+import { useAppSelector } from "hooks/useSelector";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
+  const { cart } = useAppSelector((state) => state.cart);
   return (
     <header className="header">
       <div className="header__logo">EShop</div>
@@ -31,7 +33,7 @@ const Header = () => {
         </ul>
       </nav>
       <div className="cart">
-        <span className="cart__amount">0</span>
+        <span className="cart__amount">{cart.length}</span>
       </div>
     </header>
   );

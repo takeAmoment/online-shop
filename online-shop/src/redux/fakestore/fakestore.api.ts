@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { IProduct } from "types/types";
 import { loginSchemaType } from "utilits/loginSchema";
 import { formSchemaType } from "../../utilits/schema";
 
@@ -13,6 +14,14 @@ export const storeApi = createApi({
   reducerPath: "storeApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://fakestoreapi.com" }),
   endpoints: (builder) => ({
+    getProducts: builder.query<IProduct[], string>({
+      query: (sort: string) => ({
+        url: "/products",
+        params: {
+          sort: sort,
+        },
+      }),
+    }),
     addUser: builder.mutation<UserResp, formSchemaType>({
       query: (payload: formSchemaType) => ({
         url: "/users",
@@ -36,4 +45,5 @@ export const storeApi = createApi({
   }),
 });
 
-export const { useAddUserMutation, useUserLoginMutation } = storeApi;
+export const { useAddUserMutation, useUserLoginMutation, useGetProductsQuery } =
+  storeApi;

@@ -1,0 +1,21 @@
+.main {
+    min-height: calc(80vh + 5rem);
+    background-color: rgb(209, 249, 209);;
+}
+.main__contant{
+    padding: 3rem 1rem;
+    
+}
+.pagination{
+    background-color: rgb(151, 121, 121);
+    height: 3rem;
+    width: 100%;
+}
+.products {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
