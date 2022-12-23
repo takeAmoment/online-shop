@@ -4,8 +4,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchemaType, schema } from "utilits/schema";
 import "./AddUserPage.css";
+import { useAddUserMutation } from "redux/fakestore/fakestore.api";
 
-export type Inputs = {
+export interface Inputs {
   email: string;
   username: string;
   password: string;
@@ -24,15 +25,19 @@ export type Inputs = {
     };
   };
   phone: string;
-};
+}
 
 const LoginPage = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [addUser, { isLoading, isSuccess, data }] = useAddUserMutation();
+  let latitude = "0";
+  let longitude = "0";
   const {
     register,
     reset,
     handleSubmit,
-    formState: { errors, isValid, isDirty, isSubmitted },
+    setValue,
+    formState: { errors, isValid, isSubmitted, isSubmitSuccessful },
   } = useForm<formSchemaType>({
     resolver: zodResolver(schema),
     mode: "onChange",
@@ -50,34 +55,49 @@ const LoginPage = () => {
         number: "",
         zipcode: "",
         geolocation: {
-          lat: "0",
-          long: "0",
+          lat: latitude,
+          long: longitude,
         },
       },
       phone: "",
     },
   });
+
   useEffect(() => {
-    if (isValid) {
+    if (isValid && isSubmitSuccessful) {
       setIsDisabled(false);
-    } else if (!isValid && isSubmitted) {
+    } else if (!isValid && isSubmitted && !isSubmitSuccessful) {
+      setIsDisabled(true);
+    } else {
       setIsDisabled(false);
     }
-  }, [isValid, isDirty, isSubmitted]);
+  }, [isValid, isSubmitSuccessful, isSubmitted]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      console.log(data);
+    }
+  }, [isSuccess, data]);
 
   const onSubmit: SubmitHandler<formSchemaType> = (data: formSchemaType) => {
-    console.log(data);
+    addUser(data);
     reset();
   };
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition(function (position) {
-      console.log(position);
+      if (position) {
+        longitude = `${position.coords.longitude}`;
+        latitude = `${position.coords.latitude}`;
+        setValue("address.geolocation.lat", latitude);
+        setValue("address.geolocation.long", longitude);
+      }
     });
   };
   getLocation();
 
   return (
     <div className="login__container">
+      {isLoading && <p>Loading....</p>}
       <h2 className="title">Create User</h2>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="input__first-block">
