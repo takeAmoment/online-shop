@@ -27,7 +27,7 @@ export interface Inputs {
   phone: string;
 }
 
-const LoginPage = () => {
+const AddUserPage = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [addUser, { isLoading, isSuccess, data }] = useAddUserMutation();
   let latitude = "0";
@@ -96,7 +96,7 @@ const LoginPage = () => {
   getLocation();
 
   return (
-    <div className="login__container">
+    <div className="form__container">
       {isLoading && <p>Loading....</p>}
       <h2 className="title">Create User</h2>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
@@ -232,4 +232,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default AddUserPage;

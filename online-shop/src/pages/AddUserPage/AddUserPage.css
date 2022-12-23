@@ -1,4 +1,4 @@
-.login__container {
+.form__container {
     min-height: calc(80vh + 5rem);
     display: flex;
     flex-direction: column;

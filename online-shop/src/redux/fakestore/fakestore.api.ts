@@ -1,8 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { loginSchemaType } from "utilits/loginSchema";
 import { formSchemaType } from "../../utilits/schema";
 
 interface UserResp {
   id: number;
+}
+interface LoginResp {
+  tocken: string;
 }
 
 export const storeApi = createApi({
@@ -19,7 +23,17 @@ export const storeApi = createApi({
         },
       }),
     }),
+    userLogin: builder.mutation<LoginResp, loginSchemaType>({
+      query: (payload: loginSchemaType) => ({
+        url: "/auth/login",
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }),
+    }),
   }),
 });
 
-export const { useAddUserMutation } = storeApi;
+export const { useAddUserMutation, useUserLoginMutation } = storeApi;

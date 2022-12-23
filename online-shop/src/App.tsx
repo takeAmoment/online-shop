@@ -1,10 +1,11 @@
 import PageLayout from "components/PageLayout/PageLayout";
 import AboutPage from "pages/AboutPage/AboutPage";
 import ErrorPage from "pages/ErrorPage/ErrorPage";
-import LoginPage from "pages/AddUserPage/AddUserPage";
+import LoginPage from "pages/LoginPage/LoginPage";
 import MainPage from "pages/MainPage/MainPage";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import AddUserPage from "pages/AddUserPage/AddUserPage";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Route index element={<MainPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/registration" element={<LoginPage />} />
+        <Route path="/registration" element={<AddUserPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Route>
     </Routes>
