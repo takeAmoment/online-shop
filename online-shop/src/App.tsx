@@ -6,6 +6,7 @@ import MainPage from "pages/MainPage/MainPage";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import AddUserPage from "pages/AddUserPage/AddUserPage";
+import CartPage from "pages/CartPage/CartPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/registration" element={<AddUserPage />} />
+        <Route path="/cart" element={<CartPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Route>
     </Routes>

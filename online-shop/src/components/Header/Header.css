@@ -41,6 +41,11 @@
     background-size: contain;
     cursor: pointer;
 }
+.cart:hover{
+    opacity: 0.6;
+    transform: translateY(1px);
+    transition: all 0.3s;
+}
 .cart__amount{
     display: block;
     position: absolute;

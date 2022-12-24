@@ -32,9 +32,9 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-      <div className="cart">
+      <NavLink to="/cart" className="cart">
         <span className="cart__amount">{cart.length}</span>
-      </div>
+      </NavLink>
     </header>
   );
 };

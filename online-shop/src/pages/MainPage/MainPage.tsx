@@ -9,7 +9,6 @@ const MainPage = () => {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
     setSort(e.target.value);
-    console.log(e.target.value);
   };
 
   return (
