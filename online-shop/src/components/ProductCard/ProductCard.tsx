@@ -6,6 +6,7 @@ import "./ProductCard.css";
 
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
   const { cart } = useAppSelector((state) => state.cart);
+  const { selectProduct } = useActions();
   const { addProduct, removeProduct } = useActions();
 
   const findProduct = () => {
@@ -30,12 +31,16 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
     setIsInCart(false);
   };
 
+  const openCard = () => {
+    selectProduct(product);
+  };
+
   return (
     <div className="product__card">
-      <div className="card__image">
+      <div className="card__image" onClick={openCard}>
         <img className="image" src={product.image} alt={product.title} />
       </div>
-      <ul className="card__contant">
+      <ul className="card__contant" onClick={openCard}>
         <li className="card__title">{product.title}</li>
         <li className="card__price">{product.price}$</li>
         <li className="card__category">{product.category}</li>

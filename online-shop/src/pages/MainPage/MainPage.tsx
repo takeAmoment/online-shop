@@ -1,15 +1,29 @@
+import ModalCard from "components/ModalCard/ModalCard";
+import ModalWindow from "components/ModalWindow/ModalWindow";
 import ProductCard from "components/ProductCard/ProductCard";
-import React, { useState } from "react";
+import { useAppSelector } from "hooks/useSelector";
+import React, { useEffect, useState } from "react";
 import { useGetProductsQuery } from "redux/fakestore/fakestore.api";
+import { setConstantValue } from "typescript";
 import "./MainPage.css";
 
 const MainPage = () => {
+  const { product } = useAppSelector((state) => state.selectedProduct);
   const [sort, setSort] = useState<string>("asc");
   const { data, isError, isLoading } = useGetProductsQuery(sort);
+  const [isActive, setIsActive] = useState<boolean>(product ? true : false);
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
     setSort(e.target.value);
   };
+
+  useEffect(() => {
+    if (product) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }, [product]);
 
   return (
     <div className="main">
@@ -30,6 +44,11 @@ const MainPage = () => {
           </ul>
         </div>
       </div>
+      {product && (
+        <ModalWindow isActive={isActive}>
+          <ModalCard product={product} />
+        </ModalWindow>
+      )}
     </div>
   );
 };

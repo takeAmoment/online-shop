@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface IProduct {
   id: number;
   title: string;
@@ -13,4 +15,13 @@ export interface ProductCardProps {
 
 export interface CartSlice {
   cart: IProduct[];
+}
+
+export interface SelectedProduct {
+  product: IProduct | null;
+}
+
+export interface ModalWindowProps {
+  children: React.ReactNode;
+  isActive: boolean;
 }
