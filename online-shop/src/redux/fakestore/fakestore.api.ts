@@ -22,6 +22,11 @@ export const storeApi = createApi({
         },
       }),
     }),
+    getByCategory: builder.query<IProduct[], string>({
+      query: (category: string) => ({
+        url: `/products/category/${category}`,
+      }),
+    }),
     addUser: builder.mutation<UserResp, formSchemaType>({
       query: (payload: formSchemaType) => ({
         url: "/users",
@@ -45,5 +50,9 @@ export const storeApi = createApi({
   }),
 });
 
-export const { useAddUserMutation, useUserLoginMutation, useGetProductsQuery } =
-  storeApi;
+export const {
+  useAddUserMutation,
+  useUserLoginMutation,
+  useGetProductsQuery,
+  useLazyGetByCategoryQuery,
+} = storeApi;
