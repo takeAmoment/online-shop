@@ -1,0 +1,15 @@
+.error__container {
+    min-height: calc(80vh + 5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(../../assets/error.jpg);
+    background-size: 70rem 60rem;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+
+}
+.error__title {
+    font-size: 2.4rem;
+    margin-top: 4rem;
+}
