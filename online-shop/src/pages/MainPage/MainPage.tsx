@@ -1,6 +1,7 @@
 import ModalCard from "components/ModalCard/ModalCard";
 import ModalWindow from "components/ModalWindow/ModalWindow";
 import ProductCard from "components/ProductCard/ProductCard";
+import { usePagination } from "hooks/usePagination";
 import { useAppSelector } from "hooks/useSelector";
 import React, { useEffect, useState } from "react";
 import {
@@ -21,6 +22,17 @@ const MainPage = () => {
   ] = useLazyGetByCategoryQuery();
   const [isActive, setIsActive] = useState<boolean>(product ? true : false);
   const [results, setResults] = useState<IProduct[] | undefined>(data);
+  const {
+    page,
+    nextPage,
+    prevPage,
+    lastContentIndex,
+    firstContentIndex,
+    totalPages,
+  } = usePagination({
+    contentPerPage: 8,
+    amount: results?.length ?? 0,
+  });
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
     setSort(e.target.value);
@@ -68,9 +80,11 @@ const MainPage = () => {
             <option value="desc">Z-A</option>
           </select>
           <div className="pagination">
-            <span className="prev__page"></span>
-            <span className="page">1 / 2</span>
-            <span className="next__page"></span>
+            <span className="prev__page" onClick={prevPage}></span>
+            <span className="page">
+              {page} / {totalPages}
+            </span>
+            <span className="next__page" onClick={nextPage}></span>
           </div>
           <select name="category" onChange={(e) => changeCategory(e)}>
             <option value="all">All</option>
@@ -83,9 +97,11 @@ const MainPage = () => {
         <div className="main__contant">
           <ul className="products">
             {results &&
-              results.map((product) => {
-                return <ProductCard key={product.id} product={product} />;
-              })}
+              results
+                .slice(firstContentIndex, lastContentIndex)
+                .map((product) => {
+                  return <ProductCard key={product.id} product={product} />;
+                })}
           </ul>
         </div>
       </div>

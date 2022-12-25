@@ -25,3 +25,18 @@ export interface ModalWindowProps {
   children: React.ReactNode;
   isActive: boolean;
 }
+
+export interface IPaginationProps {
+  contentPerPage: number;
+  amount: number;
+}
+export interface IPaginationResult {
+  page: number;
+  totalPages: number;
+  lastContentIndex: number;
+  firstContentIndex: number;
+  nextPage: () => void;
+  prevPage: () => void;
+}
+
+export type UsePagination = (arg: IPaginationProps) => IPaginationResult;

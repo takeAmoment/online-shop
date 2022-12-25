@@ -15,6 +15,37 @@
     align-items: center;
     justify-content: space-between;
 }
+.pagination {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+}
+.page{
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+.prev__page,
+.next__page {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    background-position: 0 0;
+    background-size: contain;
+    cursor: pointer;
+}
+.prev__page:hover,
+.next__page:hover {
+    opacity: 0.4;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+.prev__page{
+    background-image: url(../../assets/prev-arrow.png);
+}
+.next__page {
+    background-image: url(../../assets/next-arrow.png);
+}
 .products {
     display: flex;
     flex-direction: row;
