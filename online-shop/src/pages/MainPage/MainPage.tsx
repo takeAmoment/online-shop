@@ -1,9 +1,12 @@
 import ModalCard from "components/ModalCard/ModalCard";
 import ModalWindow from "components/ModalWindow/ModalWindow";
+import CardLoader from "components/MyLoaders/CardLoader";
 import ProductCard from "components/ProductCard/ProductCard";
 import { usePagination } from "hooks/usePagination";
 import { useAppSelector } from "hooks/useSelector";
+import ErrorPage from "pages/ErrorPage/ErrorPage";
 import React, { useEffect, useState } from "react";
+import ContentLoader, { Facebook } from "react-content-loader";
 import {
   useLazyGetByCategoryQuery,
   useGetProductsQuery,
@@ -18,7 +21,7 @@ const MainPage = () => {
   const { data, isError, isLoading } = useGetProductsQuery(sort);
   const [
     fetchProducts,
-    { data: products, isLoading: isProductsLoading, isSuccess },
+    { data: products, isLoading: isProductsLoading, isError: isProductError },
   ] = useLazyGetByCategoryQuery();
   const [isActive, setIsActive] = useState<boolean>(product ? true : false);
   const [results, setResults] = useState<IProduct[] | undefined>(data);
@@ -64,20 +67,24 @@ const MainPage = () => {
     if (products) {
       setResults(products);
     }
-  }, [products, isSuccess]);
+  }, [products]);
+
+  if (isError || isProductError) {
+    return <ErrorPage />;
+  }
 
   return (
     <div className="main">
       <div className="main__contant">
-        {isLoading || (isProductsLoading && <p>Loading...</p>)}
         <div className="panel">
           <select
             name="sort"
             onChange={(e) => handleChange(e)}
             disabled={isDisable}
+            className="sort__select"
           >
-            <option value="asc">A-Z</option>
-            <option value="desc">Z-A</option>
+            <option value="asc">A - Z</option>
+            <option value="desc">Z - A</option>
           </select>
           <div className="pagination">
             <span className="prev__page" onClick={prevPage}></span>
@@ -86,7 +93,11 @@ const MainPage = () => {
             </span>
             <span className="next__page" onClick={nextPage}></span>
           </div>
-          <select name="category" onChange={(e) => changeCategory(e)}>
+          <select
+            name="category"
+            onChange={(e) => changeCategory(e)}
+            className="category__select"
+          >
             <option value="all">All</option>
             <option value="electronics">electronics</option>
             <option value="jewelery">jewelery</option>
@@ -95,14 +106,18 @@ const MainPage = () => {
           </select>
         </div>
         <div className="main__contant">
-          <ul className="products">
-            {results &&
-              results
-                .slice(firstContentIndex, lastContentIndex)
-                .map((product) => {
-                  return <ProductCard key={product.id} product={product} />;
-                })}
-          </ul>
+          {isLoading || isProductsLoading ? (
+            <CardLoader />
+          ) : (
+            <ul className="products">
+              {results &&
+                results
+                  .slice(firstContentIndex, lastContentIndex)
+                  .map((product) => {
+                    return <ProductCard key={product.id} product={product} />;
+                  })}
+            </ul>
+          )}
         </div>
       </div>
       {product && (
