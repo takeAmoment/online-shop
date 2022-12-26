@@ -2,6 +2,7 @@ import ModalCard from "components/ModalCard/ModalCard";
 import ModalWindow from "components/ModalWindow/ModalWindow";
 import CardLoader from "components/MyLoaders/CardLoader";
 import ProductCard from "components/ProductCard/ProductCard";
+import { useActions } from "hooks/actions";
 import { usePagination } from "hooks/usePagination";
 import { useAppSelector } from "hooks/useSelector";
 import ErrorPage from "pages/ErrorPage/ErrorPage";
@@ -25,6 +26,7 @@ const MainPage = () => {
   ] = useLazyGetByCategoryQuery();
   const [isActive, setIsActive] = useState<boolean>(product ? true : false);
   const [results, setResults] = useState<IProduct[] | undefined>(data);
+  const { closeProduct } = useActions();
   const {
     page,
     nextPage,
@@ -72,6 +74,10 @@ const MainPage = () => {
   if (isError || isProductError) {
     return <ErrorPage />;
   }
+
+  const closeWindow = () => {
+    closeProduct();
+  };
 
   return (
     <div className="main">
@@ -121,7 +127,7 @@ const MainPage = () => {
         </div>
       </div>
       {product && (
-        <ModalWindow isActive={isActive}>
+        <ModalWindow isActive={isActive} closeWindow={closeWindow}>
           <ModalCard product={product} />
         </ModalWindow>
       )}

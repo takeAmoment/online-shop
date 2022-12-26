@@ -24,6 +24,7 @@ export interface SelectedProduct {
 export interface ModalWindowProps {
   children: React.ReactNode;
   isActive: boolean;
+  closeWindow: () => void;
 }
 
 export interface IPaginationProps {
