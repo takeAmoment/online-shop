@@ -7,7 +7,7 @@ interface UserResp {
   id: number;
 }
 interface LoginResp {
-  tocken: string;
+  token: string;
 }
 
 export const storeApi = createApi({
