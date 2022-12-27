@@ -9,66 +9,90 @@
 .title {
     margin-top: 5rem;
     font-size: 2.4rem;
+    margin-bottom: 3rem;
 }
-.form {
-    width: 70rem;
-    border: 1px solid black;
+.form__block {
+    width: 50rem;
+    border-radius: 1rem;
     background-color: #fff;
     display: flex;
-    flex-direction: row;
-    align-items: start;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 1rem 0.1rem rgba(0, 0, 0, 0.175);
+}
+.prev__step{
+    background-color: #fff;
+    font-size: 1.8rem;
+    margin-right: 1rem;
+    border: none;
+    cursor: pointer;
+    color:rgba(0, 0, 0, 0.7)
+}
+.steps {
+    margin-top: 2rem;
+    text-align: left;
+    font-size: 1.4rem;
+    color:rgba(0, 0, 0, 0.7);
+}
+.form {
     margin: 2rem;
     padding: 3rem;
     font-size: 1.6rem;
-}
-.input__first-block{
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-.input__second-block {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding-left: 3rem;
-    border-left: 1px solid green;
+    align-items: center;
 }
 .input__block{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 1rem;
     align-items: center;
     justify-content: space-between;
+}
+.input__items {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
 }
 label{
     font-weight: 700;
     font-size: 1.4rem;
 }
 input{
-    height: 2.5rem;
+    padding: 0rem 0.5rem;
+    height: 3rem;
+    width: 30rem;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.7);
 }
-.email,
-.password,
-.username,
-.street,
-.phone {
-    width: 20rem;
-}
-.firstname,
-.lastname {
-    width: 17rem;
+input:focus {
+    outline: 1px solid green;
+    border-bottom: none;
+    box-shadow: 0rem 0rem 0.1rem 0.2rem rgba(0, 128, 0, 0.189);
 }
 .input__item{
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
+.city,
+.street {
+    width: 20rem;
+}
+.zip,
+.number {
+    width: 8rem;
+}
+.long,
+.lat {
+    width: 14rem;
+}
 .submit{
     margin-top: 4rem;
-    padding: 1rem;
-    border-radius: 2rem;
+    padding: 1.5rem 2rem;
+    width: 30rem;
+    border-radius: 1rem;
     background-color: forestgreen;
     color: white;
     cursor: pointer;

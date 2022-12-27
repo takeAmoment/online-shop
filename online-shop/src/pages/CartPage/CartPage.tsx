@@ -1,4 +1,4 @@
-import CartProductCard from "components/CartProductCard.tsx/CartProductCard";
+import CartProductCard from "components/CartProductCard/CartProductCard";
 import { useAppSelector } from "hooks/useSelector";
 import React from "react";
 import "./CartPage.css";

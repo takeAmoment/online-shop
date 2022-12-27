@@ -27,7 +27,7 @@ const Header = () => {
           </li>
           <li className="list__link">
             <NavLink to="/registration" className="link">
-              Sign up
+              Create User
             </NavLink>
           </li>
         </ul>

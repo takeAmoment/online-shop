@@ -1,4 +1,6 @@
 import React from "react";
+import { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
+import { formSchemaType } from "utilits/schema";
 
 export interface IProduct {
   id: number;
@@ -41,3 +43,8 @@ export interface IPaginationResult {
 }
 
 export type UsePagination = (arg: IPaginationProps) => IPaginationResult;
+
+export interface UserInfoProps {
+  register: UseFormRegister<formSchemaType>;
+  errors: Partial<FieldErrorsImpl<formSchemaType>>;
+}

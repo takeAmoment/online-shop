@@ -1,35 +1,23 @@
-import MyInput from "components/UI/inputs/MyInput";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchemaType, schema } from "utilits/schema";
 import "./AddUserPage.css";
 import { useAddUserMutation } from "redux/fakestore/fakestore.api";
+import UserInfo from "components/UserInfo/UserInfo";
+import PersonalInfo from "components/PersonalInfo/PersonalInfo";
+import AddressInfo from "components/AddressInfo/AddressInfo";
+import Spinner from "components/Spinner/Spinner";
+import ModalWindow from "components/ModalWindow/ModalWindow";
 
-export interface Inputs {
-  email: string;
-  username: string;
-  password: string;
-  name: {
-    firstname: string;
-    lastname: string;
-  };
-  address: {
-    city: string;
-    street: string;
-    number: number;
-    zipcode: string;
-    geolocation: {
-      lat: string;
-      long: string;
-    };
-  };
-  phone: string;
-}
+const MAX_INDEX = 3;
 
 const AddUserPage = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
-  const [addUser, { isLoading, isSuccess, data }] = useAddUserMutation();
+  const [addUser, { isLoading, isSuccess, data, isError }] =
+    useAddUserMutation();
+  const [isActive, setActive] = useState<boolean>(false);
+  const [formIndex, setFormIndex] = useState<number>(0);
   let latitude = "0";
   let longitude = "0";
   const {
@@ -74,10 +62,10 @@ const AddUserPage = () => {
   }, [isValid, isSubmitSuccessful, isSubmitted]);
 
   useEffect(() => {
-    if (isSuccess) {
-      console.log(data);
+    if (isSuccess || isError) {
+      setActive(true);
     }
-  }, [isSuccess, data]);
+  }, [data, isSuccess, isError]);
 
   const onSubmit: SubmitHandler<formSchemaType> = (data: formSchemaType) => {
     addUser(data);
@@ -95,139 +83,65 @@ const AddUserPage = () => {
   };
   getLocation();
 
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  const prevSlide = () => {
+    setFormIndex((formIndex) => formIndex - 1);
+  };
+
+  const nextSlide = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setFormIndex((formIndex) => formIndex + 1);
+  };
+
+  const closeWindow = () => {
+    setActive(false);
+  };
+
   return (
     <div className="form__container">
-      {isLoading && <p>Loading....</p>}
       <h2 className="title">Create User</h2>
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="input__first-block">
-          <div className="input__item">
-            <MyInput
-              type="text"
-              text="E-mail:"
-              name="email"
-              register={register}
-            />
-            <p className="input__error">{errors.email?.message}</p>
-          </div>
-          <div className="input__item">
-            <MyInput
-              type="text"
-              text="User name:"
-              name="username"
-              register={register}
-            />
-            <p className="input__error">{errors.username?.message}</p>
-          </div>
-          <div className="input__item">
-            <MyInput
-              type="text"
-              text="Password:"
-              name="password"
-              register={register}
-            />
-            <p className="input__error">{errors.password?.message}</p>
-          </div>
-        </div>
-        <div className="input__second-block">
-          <div className="input__block">
-            <div className="input__item">
-              <MyInput
-                type="text"
-                text="First name:"
-                name="name.firstname"
-                register={register}
-              />
-              <p className="input__error">{errors.name?.firstname?.message}</p>
-            </div>
-            <div className="input__item">
-              <MyInput
-                type="text"
-                text="Last name: "
-                name="name.lastname"
-                register={register}
-              />
-              <p className="input__error">{errors.name?.lastname?.message}</p>
-            </div>
-          </div>
-          <div className="input__block">
-            <div className="input__item">
-              <MyInput
-                type="text"
-                text="City:"
-                name="address.city"
-                register={register}
-              />
-              <p className="input__error">{errors.address?.city?.message}</p>
-            </div>
-            <div className="input__item">
-              <MyInput
-                type="text"
-                text="Zip code: "
-                name="address.zipcode"
-                register={register}
-              />
-              <p className="input__error">{errors.address?.zipcode?.message}</p>
-            </div>
-          </div>
-          <div className="input__block">
-            <div className="input__item">
-              <MyInput
-                type="text"
-                text="Street: "
-                name="address.street"
-                register={register}
-              />
-              <p className="input__error">{errors.address?.street?.message}</p>
-            </div>
-            <div className="input__item">
-              <MyInput
-                type="text"
-                text="Number: "
-                name="address.number"
-                register={register}
-              />
-              <p className="input__error">{errors.address?.number?.message}</p>
-            </div>
-          </div>
-          <div className="input__block">
-            <div className="input__item">
-              <MyInput
-                type="text"
-                text="Lat: "
-                name="address.geolocation.lat"
-                register={register}
-              />
-              <p className="input__error">
-                {errors.address?.geolocation?.lat?.message}
-              </p>
-            </div>
-            <div className="input__item">
-              <MyInput
-                type="text"
-                text="Long: "
-                name="address.geolocation.long"
-                register={register}
-              />
-              <p className="input__error">
-                {errors.address?.geolocation?.long?.message}
-              </p>
-            </div>
-          </div>
-          <div className="input__item">
-            <MyInput
-              type="text"
-              text="Phone number: "
-              name="phone"
-              register={register}
-            />
-            <p className="input__error">{errors.phone?.message}</p>
-          </div>
-          <button type="submit" className="submit" disabled={isDisabled}>
-            Submit
+      <div className="form__block">
+        <p className="steps">
+          <button className="prev__step" onClick={prevSlide}>
+            {"<"}
           </button>
-        </div>
-      </form>
+          Step {formIndex + 1} from {MAX_INDEX}
+        </p>
+        <form className="form" onSubmit={handleSubmit(onSubmit)}>
+          {formIndex === 0 && <UserInfo register={register} errors={errors} />}
+          {formIndex === 1 && (
+            <PersonalInfo register={register} errors={errors} />
+          )}
+          {formIndex === 2 && (
+            <AddressInfo register={register} errors={errors} />
+          )}
+          {formIndex < 2 ? (
+            <button
+              type="button"
+              className="submit"
+              onClick={(e) => nextSlide(e)}
+            >
+              Next button
+            </button>
+          ) : (
+            <button type="submit" className="submit" disabled={isDisabled}>
+              Submit
+            </button>
+          )}
+        </form>
+      </div>
+      <ModalWindow isActive={isActive} closeWindow={closeWindow}>
+        {isError && <p className="window__message">Something went wrong!!!</p>}
+        {isSuccess && data && (
+          <p className="window__message">
+            User was created successfully! User id:
+            <strong>{data.id}</strong>
+          </p>
+        )}
+      </ModalWindow>
     </div>
   );
 };
