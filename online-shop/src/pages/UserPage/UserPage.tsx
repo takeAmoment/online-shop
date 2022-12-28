@@ -1,20 +1,26 @@
+import Spinner from "components/Spinner/Spinner";
 import UserCart from "components/UserCart/UserCart";
 import { useAppSelector } from "hooks/useSelector";
+import ErrorPage from "pages/ErrorPage/ErrorPage";
 import React, { useEffect } from "react";
 import { useLazyGetUserCartQuery } from "redux/fakestore/fakestore.api";
 import "./UserPage.css";
 
 const UserPage = () => {
   const { user } = useAppSelector((state) => state.user);
-  const [fetchCart, { data, isLoading, isSuccess }] = useLazyGetUserCartQuery();
+  const [fetchCart, { data, isLoading, isError }] = useLazyGetUserCartQuery();
   useEffect(() => {
     if (user) {
       fetchCart(user.id);
     }
   }, [user, fetchCart]);
-  useEffect(() => {
-    console.log(data);
-  }, [isSuccess, data]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+  if (isError) {
+    return <ErrorPage />;
+  }
 
   return (
     <div className="user__container">
