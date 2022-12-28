@@ -20,7 +20,7 @@ const CartPage = () => {
             return <CartProductCard key={item.id} product={item} />;
           })}
       </ul>
-      <h3 className="cart__sum">Total: {findSum()}</h3>
+      {cart.length >= 1 && <h3 className="cart__sum">Total: {findSum()}$</h3>}
     </div>
   );
 };

@@ -9,6 +9,18 @@
     box-shadow: 0rem 0rem 0.5rem 0.3rem rgba(0, 0, 0, 0.2);
     background-color: #fff;
 }
+@media (max-width: 650px) {
+    .cart__product__card {
+        width: 80%;
+    }
+}
+@media (max-width: 450px) {
+    .cart__product__card {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+
 .product__card__left{
     display: flex;
     flex-direction: row;
@@ -63,4 +75,10 @@
     flex-direction: column;
     align-items: flex-end;
     gap: 1.5rem;
+}
+@media (max-width: 450px) {
+    .product__card__price{
+        flex-direction: row;
+        gap: 2rem;
+    }
 }
