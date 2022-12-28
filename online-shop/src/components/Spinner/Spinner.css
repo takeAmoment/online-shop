@@ -5,6 +5,7 @@
   justify-content: center;
   width: 100%;
   min-height: calc(80vh + 5rem);
+  background-color: rgb(209, 249, 209);
 }
 .loader {
   width: 48px;
