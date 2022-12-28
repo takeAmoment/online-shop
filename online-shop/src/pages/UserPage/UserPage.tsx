@@ -61,6 +61,12 @@ const UserPage = () => {
         </div>
       </div>
       <div className="user__cart">
+        <h3 className="title_underline">
+          Cart of {""}
+          {user &&
+            user?.name.firstname.slice(0, 1).toUpperCase() +
+              user?.name.firstname.slice(1)}
+        </h3>
         <ul className="cart__products">
           {data &&
             data.map((item) => {
