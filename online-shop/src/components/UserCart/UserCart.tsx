@@ -5,7 +5,7 @@ import "./UserCart.css";
 
 const UserCart: FC<UserCartProps> = ({ cartElement }) => {
   return (
-    <div>
+    <div className="cart__block">
       <h4 className="date">{cartElement.date}</h4>
       <ul className="cart__element">
         {cartElement &&
