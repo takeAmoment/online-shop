@@ -1,14 +1,20 @@
 .user__card {
     flex: 0 1 30%;
-    min-width: 30rem;
+    min-width: 32rem;
+    min-height: 20rem;
     display: flex;
     padding: 1rem;
     flex-direction: row;
     align-items: center;
-    gap: 4rem;
+    gap: 2rem;
     box-shadow: 0rem 0rem 0.5rem 0.3rem rgba(0, 0, 0, 0.4);
     background-color: white;
     border-radius: 1rem;
+}
+@media (max-width: 350px) {
+    .user__card {
+        min-width: 28rem;
+    }
 }
 .user__image {
     width: 15rem;
