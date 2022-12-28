@@ -1,18 +1,19 @@
 .header{
     min-height: 5rem;
     padding: 1rem 2rem;
-    background-color: rgba(34, 139, 34, 0.705);
+    background-color: rgba(34, 139, 34, 0.7);
     font-size: 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 .header__logo{
-    border-bottom: 3px solid rgb(106, 55, 106);
+    border-bottom: 0.3rem solid rgb(16, 42, 130);
     border-radius: 50%;
     padding: 0.5rem 1rem;
+    color:rgb(16, 42, 130);
     font-style: italic;
-    font-weight: 300;
+    font-weight: 700;
 }
 .menu__list{
     display: flex;
@@ -20,13 +21,32 @@
     justify-content: space-between;
     gap: 2rem;
 }
+@media (max-width: 768px) {
+    .header__menu {
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        right: -100%;
+        width: 60%;
+        background-color: rgb(57, 105, 57);
+        transition: all 0.5s ease;
+    }
+    .header__menu.active{
+        right: 0;
+        transition: all 0.5s ease;
+    }
+    .menu__list{
+        flex-direction: column;
+        align-items: center;
+        padding-top: 10rem;
+    }
+}
 .link {
     color: black;
     font-size: 2.4rem;
 }
 .link:hover{
-    opacity: 0.6;
-    border-bottom: 1px solid green;
+    opacity: 0.5;
     transition: all 0.3s ease;
 }
 .link.active{
@@ -53,8 +73,53 @@
     left: -5px;
     width: 1.8rem;
     height: 1.8rem;
+    font-weight: 700;
     text-align: center;
     font-size: 1.4rem;
     background-color: #fff;
     border-radius: 50%;
+}
+@media (max-width: 768px) {
+    .cart{
+        margin-left: auto;
+        margin-right: 2rem;
+    }
+}
+.menu__burger{
+    display: none;
+}
+@media (max-width: 768px) {
+    .menu__burger {
+        display: block;
+        z-index: 15;
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        cursor: pointer;
+    }
+}
+.line1,
+.line2,
+.line3 {
+    display: block;
+    height: 2px;
+    width: 3rem;
+    background-color: black;
+    border-radius: 0.5rem;
+    transition: ease-out 0.5s;
+}
+.line2.active{
+    transform: scale(0.1);
+    transition: ease-out 0.5s;
+}
+.line1.active{
+    transform: rotate(45deg) translate(0.45rem, 0.9rem);
+    transition: ease-out 0.5s;
+}
+.line3.active{
+    transform: rotate(135deg) translate(-0.5rem, 1rem);
+    transition: ease-out 0.5s;
 }
