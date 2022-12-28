@@ -1,0 +1,22 @@
+.users__container {
+    min-height: calc(80vh + 5rem);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(209, 249, 209);
+}
+.title {
+    font-size: 2.4rem;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+.users {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
