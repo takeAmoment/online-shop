@@ -11,7 +11,7 @@ const UserPage = () => {
     if (user) {
       fetchCart(user.id);
     }
-  }, [user]);
+  }, [user, fetchCart]);
   useEffect(() => {
     console.log(data);
   }, [isSuccess, data]);
