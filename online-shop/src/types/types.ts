@@ -10,7 +10,9 @@ export interface IProduct {
   description: string;
   image: string;
 }
-
+export interface IUser extends formSchemaType {
+  id: number;
+}
 export interface ProductCardProps {
   product: IProduct;
 }
@@ -47,4 +49,27 @@ export type UsePagination = (arg: IPaginationProps) => IPaginationResult;
 export interface UserInfoProps {
   register: UseFormRegister<formSchemaType>;
   errors: Partial<FieldErrorsImpl<formSchemaType>>;
+}
+
+export interface UserCardProps {
+  user: IUser;
+}
+
+export interface UserState {
+  user: IUser | null;
+}
+
+export interface ProductInfo {
+  productId: number;
+  quantity: number;
+}
+
+export interface CartProduct {
+  id: number;
+  userId: number;
+  date: string;
+  products: ProductInfo[];
+}
+export interface UserCartProps {
+  cartElement: CartProduct;
 }

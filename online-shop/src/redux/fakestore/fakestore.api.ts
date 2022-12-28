@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IProduct } from "types/types";
+import { CartProduct, IProduct, IUser } from "types/types";
 import { loginSchemaType } from "utilits/loginSchema";
 import { formSchemaType } from "../../utilits/schema";
 
@@ -22,9 +22,24 @@ export const storeApi = createApi({
         },
       }),
     }),
+    getProduct: builder.query<IProduct, number>({
+      query: (id: number) => ({
+        url: `/products/${id}`,
+      }),
+    }),
     getByCategory: builder.query<IProduct[], string>({
       query: (category: string) => ({
         url: `/products/category/${category}`,
+      }),
+    }),
+    getUsers: builder.query<IUser[], void>({
+      query: () => ({
+        url: "/users",
+      }),
+    }),
+    getUserCart: builder.query<CartProduct[], number>({
+      query: (id: number) => ({
+        url: `/carts/user/${id}`,
       }),
     }),
     addUser: builder.mutation<UserResp, formSchemaType>({
@@ -55,4 +70,7 @@ export const {
   useUserLoginMutation,
   useGetProductsQuery,
   useLazyGetByCategoryQuery,
+  useGetUsersQuery,
+  useLazyGetUserCartQuery,
+  useGetProductQuery,
 } = storeApi;
