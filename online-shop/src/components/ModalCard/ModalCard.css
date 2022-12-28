@@ -22,3 +22,21 @@
     font-weight: 700;
     font-size: 1.8rem;
 }
+@media (max-width: 800px) {
+    .modal__card {
+        flex-direction: column;
+        align-items: center;
+    }
+    .modal__card__image {
+        width: 15rem;
+        height: 15rem;
+    }
+}
+@media (max-width: 500px) {
+    .modal__card__image {
+        display: none;
+    }
+    .info__item{
+        font-size: 1.4rem;
+    }
+}

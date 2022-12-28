@@ -7,7 +7,6 @@ import { usePagination } from "hooks/usePagination";
 import { useAppSelector } from "hooks/useSelector";
 import ErrorPage from "pages/ErrorPage/ErrorPage";
 import React, { useEffect, useState } from "react";
-import ContentLoader, { Facebook } from "react-content-loader";
 import {
   useLazyGetByCategoryQuery,
   useGetProductsQuery,

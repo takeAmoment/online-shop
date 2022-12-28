@@ -1,5 +1,6 @@
 .modal{
     position: fixed;
+    z-index: 20;
     top: 0;
     left: 0;
     bottom: 0;
@@ -33,6 +34,16 @@
     align-items: center;
     border-radius: 2rem;
     box-shadow: 0rem 0rem 0.3rem 0.2rem rgb(184, 239, 248);
+}
+@media (max-width: 800px) {
+    .modal__contant {
+        width: 70%;
+    }
+}
+@media (max-width: 500px) {
+    .modal__contant {
+        width: 60%;
+    }
 }
 .close__icon {
     position: absolute;
