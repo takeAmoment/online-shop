@@ -7,3 +7,9 @@
     font-size: 1.6rem;
     margin-bottom: 1rem;
 }
+.error__message {
+    color: red;
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+}
