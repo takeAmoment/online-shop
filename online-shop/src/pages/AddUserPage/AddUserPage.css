@@ -23,15 +23,28 @@
 }
 .prev__step{
     background-color: #fff;
-    font-size: 1.8rem;
-    margin-right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-image: url(../../assets/back.png);
+    background-size: contain;
+    background-position: left center;
+    background-repeat: no-repeat;
     border: none;
     cursor: pointer;
     color:rgba(0, 0, 0, 0.7)
 }
+.prev__step:hover{
+    transform: scale(1.2);
+    opacity: 0.8;
+    transition: all 0.3s;
+}
 .steps {
     margin-top: 2rem;
     text-align: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 1.4rem;
     color:rgba(0, 0, 0, 0.7);
 }

@@ -88,7 +88,9 @@ const AddUserPage = () => {
   }
 
   const prevSlide = () => {
-    setFormIndex((formIndex) => formIndex - 1);
+    if (formIndex > 0) {
+      setFormIndex((formIndex) => formIndex - 1);
+    }
   };
 
   const nextSlide = (e: React.MouseEvent) => {
@@ -105,9 +107,7 @@ const AddUserPage = () => {
       <h2 className="title">Create User</h2>
       <div className="form__block">
         <p className="steps">
-          <button className="prev__step" onClick={prevSlide}>
-            {"<"}
-          </button>
+          <button className="prev__step" onClick={prevSlide}></button>
           Step {formIndex + 1} from {MAX_INDEX}
         </p>
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
