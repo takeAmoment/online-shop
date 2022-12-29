@@ -1,0 +1,54 @@
+.user__card {
+    flex: 0 1 30%;
+    min-width: 32rem;
+    min-height: 20rem;
+    display: flex;
+    padding: 1rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    box-shadow: 0rem 0rem 0.5rem 0.3rem rgba(0, 0, 0, 0.4);
+    background-color: white;
+    border-radius: 1rem;
+}
+@media (max-width: 350px) {
+    .user__card {
+        min-width: 28rem;
+    }
+}
+.user__image {
+    width: 15rem;
+    height: 15rem;
+    background-image: url(../../assets/customer.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 10rem 10rem;
+}
+.user__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.user__name {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+.text {
+    font-size: 1.6rem;
+}
+.user__button {
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    font-size: 1.6rem;
+    border: none;
+    background-color: rgb(172, 208, 246);
+    cursor: pointer;
+}
+.user__button:hover{
+    opacity: 0.8;
+    transform: translateY(1px);
+    transition: all 0.3s;
+}

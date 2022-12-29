@@ -1,0 +1,63 @@
+.modal{
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.774);
+    display: none;
+}
+.modal.active{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation-name: windowAnimation;
+    animation-duration: 0.8s;
+    transition: all 0.3s;
+}
+@keyframes windowAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.modal__contant {
+    position: relative;
+    background-color: #fff;
+    width: 65rem;
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0rem 0rem 0.3rem 0.2rem rgb(184, 239, 248);
+}
+@media (max-width: 800px) {
+    .modal__contant {
+        width: 70%;
+    }
+}
+@media (max-width: 500px) {
+    .modal__contant {
+        width: 60%;
+    }
+}
+.close__icon {
+    position: absolute;
+    top: -3rem;
+    right: -3rem;
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    background-image: url(../../assets/cross.png);
+    background-position: 0 0;
+    background-size: contain;
+    cursor: pointer;
+}
+.close__icon:hover{
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}

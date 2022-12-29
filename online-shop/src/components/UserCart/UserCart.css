@@ -1,0 +1,21 @@
+.cart__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cart__element {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+.date {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+.error__message {
+    color: red;
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+}
