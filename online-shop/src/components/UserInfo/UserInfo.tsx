@@ -27,7 +27,7 @@ const UserInfo: FC<UserInfoProps> = ({ register, errors }) => {
       </div>
       <div className="input__item">
         <MyInput
-          type="text"
+          type="password"
           text="Password:"
           name="password"
           classname="password"

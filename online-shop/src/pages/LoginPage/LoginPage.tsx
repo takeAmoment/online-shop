@@ -62,7 +62,7 @@ export default function LoginPage() {
         </div>
         <div className="input__password">
           <label htmlFor="password">Password:</label>
-          <input id="password" type="text" {...register("password")} />
+          <input id="password" type="password" {...register("password")} />
           <p className="input__error">{errors.password?.message}</p>
         </div>
         <button className="submit" type="submit" disabled={isDisabled}>
