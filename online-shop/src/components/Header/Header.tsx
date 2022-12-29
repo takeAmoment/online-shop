@@ -9,7 +9,6 @@ const Header = () => {
   const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
 
   const handleClick = () => {
-    console.log("click");
     if (isBurgerActive) {
       setBurgerActive(false);
       setIsMenuActive(false);
@@ -18,28 +17,34 @@ const Header = () => {
       setIsMenuActive(true);
     }
   };
+  const closeMenu = () => {
+    if (isBurgerActive) {
+      setBurgerActive(false);
+      setIsMenuActive(false);
+    }
+  };
 
   return (
     <header className="header">
       <div className="header__logo">EShop</div>
       <nav className={isMenuActive ? "header__menu active" : "header__menu"}>
         <ul className="menu__list">
-          <li className="list__link">
+          <li className="list__link" onClick={closeMenu}>
             <NavLink to="/" className="link">
               Home
             </NavLink>
           </li>
-          <li className="list__link">
+          <li className="list__link" onClick={closeMenu}>
             <NavLink to="/users" className="link">
               Users
             </NavLink>
           </li>
-          <li className="list__link">
+          <li className="list__link" onClick={closeMenu}>
             <NavLink to="/login" className="link">
               Login
             </NavLink>
           </li>
-          <li className="list__link">
+          <li className="list__link" onClick={closeMenu}>
             <NavLink to="/registration" className="link">
               Create User
             </NavLink>
