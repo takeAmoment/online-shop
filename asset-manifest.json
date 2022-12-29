@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/online-shop/static/css/main.beda7739.css",
+    "main.js": "/online-shop/static/js/main.35aef169.js",
+    "static/media/error.jpg": "/online-shop/static/media/error.40fcab2e9e58057ed1fd.jpg",
+    "static/media/cart.svg": "/online-shop/static/media/cart.f575c053ee0f69c983f5.svg",
+    "index.html": "/online-shop/index.html",
+    "main.beda7739.css.map": "/online-shop/static/css/main.beda7739.css.map",
+    "main.35aef169.js.map": "/online-shop/static/js/main.35aef169.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.beda7739.css",
+    "static/js/main.35aef169.js"
+  ]
+}
